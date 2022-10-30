@@ -10,7 +10,7 @@ class AgentWithBehavior(agent.Agent):
             self.counter = 0
 
         async def run(self):
-            print("Agent now is running".format(self.counter))
+            print("Agent now is running {}".format(self.counter))
             self.counter += 1
             await asyncio.sleep(1)
 
@@ -24,6 +24,11 @@ Agent1 = AgentWithBehavior("Karimi@deshalbfrei.org", "321456")
 future = Agent1.start()
 future.result()
 
+print("Wait until user interrupts with ctrl+C")
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    print("Stopping...")
 Agent1.stop()
-quit_spade()
 
